@@ -572,7 +572,7 @@ class Collection:
         Returns: 
             str : notes for collection
         """
-        return Notes
+        return self.notes
 
 class ExtendedData:
     """
@@ -676,7 +676,7 @@ class LEGOComDetails:
         self.dateLastAvailable = dateLastAvailable
     def __str__(self):
         if (self.retailPrice is not None) and (self.dateFirstAvailable is not None) and (self.dateLastAvailable is not None):
-            return f"Was available from {dateFirstAvailable} to {dateLastAvailable} and cost {retailPrice}"
+            return f"Was available from {self.dateFirstAvailable} to {self.dateLastAvailable} and cost {self.retailPrice}"
         if self.retailPrice is not None:
             return f"Costs {self.retailPrice}"
         return "No info available from LEGO.com"
@@ -755,7 +755,7 @@ class Sets:
             collection of the Lego set
         collections : Collections
             collections of the Lego set
-        LEGOCom : LEGOCom
+        legoCom : LEGOCom
             data from Lego.com website
         rating : int
             rating of Lego set
@@ -780,7 +780,7 @@ class Sets:
         lastUpdated : date
             last time Lego set data was updated
     """
-    def __init__(self, setID:int, number:int, numberVariant:int, name:str, year:int, theme:str, themeGroup:str, subtheme:str, category:str, released:bool, pieces:int|None, minifigs:int|None, image:Image, bricksetURL:str, collection:Collection, collections:Collections, LEGO:LEGOCom, rating:int, reviewCount:int, packagingType:str, availability:str, instructionsCount:int, additionalImageCount:int, ageRange:AgeRange, dimensions:Dimensions, barcode:Barcodes, extendedData:ExtendedData, lastUpdated:date):
+    def __init__(self, setID:int, number:int, numberVariant:int, name:str, year:int, theme:str, themeGroup:str, subtheme:str, category:str, released:bool, pieces:int|None, minifigs:int|None, image:Image, bricksetURL:str, collection:Collection, collections:Collections, legoCom:LEGOCom, rating:int, reviewCount:int, packagingType:str, availability:str, instructionsCount:int, additionalImageCount:int, ageRange:AgeRange, dimensions:Dimensions, barcode:Barcodes, extendedData:ExtendedData, lastUpdated:date):
         """
         Initialization of set class
 
@@ -801,7 +801,7 @@ class Sets:
         bricksetURL : URL to the Lego set on the brickset website
         collection : collection of the Lego set
         collections : collections of the Lego set
-        LEGO : data from Lego.com website
+        legoCom : data from Lego.com website
         rating : rating of Lego set
         reviewCount : number of reviews
         packagingType : chooses how the set is packaged
@@ -830,7 +830,7 @@ class Sets:
         self.bricksetURL = bricksetURL
         self.collection = collection
         self.collections = collections
-        self.LEGO = LEGO
+        self.legoCom = legoCom
         self.rating = rating
         self.reviewCount = reviewCount
         self.packagingType = packagingType
